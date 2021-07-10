@@ -5,25 +5,25 @@ exports.authRefreshToken = (req, res) => {
     const refreshToken = req.body.refreshToken
     console.log("cc")
     console.log(refreshToken)
-    // const spotifyApi = new SpotifyWebApi({
-    //     redirectUri: process.env.URL,
-    //     clientId: process.env.CLIENT_ID,
-    //     clientSecret: process.env.CLIENT_SECRET,
-    //     refreshToken,
-    // })
+    const spotifyApi = new SpotifyWebApi({
+        redirectUri: process.env.URL,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken,
+    })
 
-    // spotifyApi
-    //     .refreshAccessToken()
-    //     .then(data => {
-    //         res.status(200).json({
-    //             accessToken: data.body.accessToken,
-    //             expiresIn: data.body.expiresIn
-    //         })
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //         res.status(400)
-    //     })
+    spotifyApi
+        .refreshAccessToken()
+        .then(data => {
+            res.status(200).json({
+                accessToken: data.body.accessToken,
+                expiresIn: data.body.expiresIn
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(400)
+        })
 }
 
 exports.authLogin = (req, res) => {
