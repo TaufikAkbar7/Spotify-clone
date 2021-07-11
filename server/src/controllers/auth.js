@@ -27,16 +27,17 @@ exports.authRefreshToken = (req, res) => {
 }
 
 exports.authLogin = (req, res) => {
-    const code = req.body.code
+    const token = req.body.token
+    console.log(token)
     const spotifyApi = new SpotifyWebApi({
-        redirectUri: process.env.URL,
+        redirectUri: process.env.REDIRECT_URI,
         clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET
+        clientSecret: process.env.CLIENT_SECRET,
     })
 
-    spotifyApi.authorizationCodeGrant(code)
+    spotifyApi.authorizationCodeGrant(token)
         .then(data => {
-            res.status(200).json({
+            res.json({
                 accessToken: data.body.access_token,
                 refreshToken: data.body.refresh_token,
                 expiresIn: data.body.expires_in
@@ -44,6 +45,6 @@ exports.authLogin = (req, res) => {
         })
         .catch((error) => {
             console.log(error)
-            res.status(400)
+            res.sendStatus(400)
         })
 }

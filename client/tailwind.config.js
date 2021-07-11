@@ -14,6 +14,8 @@ module.exports = {
       red: colors.rose,
       yellow: colors.amber,
       green: colors.green,
+      primaryColor: "#000",
+      secondaryColor: "#fff"
     }
   },
   variants: {

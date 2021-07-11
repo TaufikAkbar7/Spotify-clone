@@ -1,31 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import Dashboard from './components/Dashboard'
-import Login from './components/Login'
-import { getTokenFromUrl } from './components/spotify.js'
+import React from 'react'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+
 
 const App = () => {
 
-  const [token, setToken] = useState();
-
-  useEffect(() => {
-    const hash = getTokenFromUrl();
-    window.location.hash = "";
-    const getToken = hash.access_token;
-
-    if(getToken){
-      setToken(getToken)
-    }
-  }, [])
-
+  const code = new URLSearchParams(window.location.search).get("code")
+  
   return (
     <div className="min-h-screen flex justify-center items-center">
-       {
-         token ? (
-           <Dashboard/>
-         ) : (
-          <Login/> 
-         )
-       }
+      {
+        code ? (
+          <Dashboard token={code} />
+        ) : (
+          <Login />
+        )
+      }
     </div>
   )
 }
