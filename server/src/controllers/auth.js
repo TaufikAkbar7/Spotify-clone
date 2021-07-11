@@ -3,8 +3,6 @@ const SpotifyWebApi = require("spotify-web-api-node")
 
 exports.authRefreshToken = (req, res) => {
     const refreshToken = req.body.refreshToken
-    console.log("cc")
-    console.log(refreshToken)
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.URL,
         clientId: process.env.CLIENT_ID,
@@ -28,7 +26,6 @@ exports.authRefreshToken = (req, res) => {
 
 exports.authLogin = (req, res) => {
     const token = req.body.token
-    console.log(token)
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
         clientId: process.env.CLIENT_ID,

@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import useAuth from '../utils/useAuth'
 import spotifyApi from "spotify-web-api-node"
+import { Spinner, Title } from "../components"
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile, getRecentlyTrack } from "../config/redux/actions"
 import "./style.css"
 
 const Dashboard = ({ token }) => {
-    const [user, setUser] = useState({})
-    const [loading, setLoading] = useState(true)
-    const [recentlyPlayed, setRecentlyPlayed] = useState({})
+    const myProfile = useSelector(state => state.myProfile)
+    const { profile, loading } = myProfile
+    const recentlyTrack = useSelector(state => state.recentlyTrack)
+    const { tracks } = recentlyTrack
     const accessToken = useAuth(token)
+    const dispatch = useDispatch();
     const s = new spotifyApi({
         clientId: "6c7d7ffb3ab74ab7a9bf265960469268"
     })
@@ -15,41 +20,35 @@ const Dashboard = ({ token }) => {
     useEffect(() => {
         if (!accessToken) return console.log("cannot get access token")
         s.setAccessToken(accessToken)
-
-        s.getMe()
-            .then(res => {
-                setUser(res)
-                setLoading(false)
-            })
-            .catch(err => console.log(err))
-        
-        //recentTracks
-        s.getMyRecentlyPlayedTracks({ limit: 5 })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }, [accessToken])
-
+        dispatch(getProfile(s))
+        dispatch(getRecentlyTrack(s))
+    }, [accessToken, dispatch])
+    console.log(profile)
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="container mx-auto bg-red-500">
-                {
-                    loading ? (
-                        <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
-                            <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
-                        </div>
+                {loading ? (
+                    <Spinner/>
 
-                    ) : user ? (
-                        <div className="flex flex-col justify-center items-center">
-                            {user.body.images.map(img => (
-                                <img key={img.url} src={img.url} alt="foto" width="150" height="150" />
-                            ))}
-                            <span>{user.body.display_name}</span>
-                            <span>{user.body.followers.total}</span>
+                ) : myProfile ? (
+                    <div className="flex flex-wrap justify-center items-center">
+                        <Title title="Adddww"/>
+                        <div className="p-5 sm:w-1/2 lg:w-1/3 md:ml-4 md:mr-4 md:mt-5 sm:mt-5 sm:ml-1 sm:mr-3">
+                            {/* {tracks.map((item, i) => (
+                                <div className="h-full rounded-lg overflow-hidden bg-thirdColor" key={i}>
+                                    <img src={item.track.href} alt="" />
+                                    <span className="text-2xl font-semibold">{item.track.name}</span>
+                                    {item.artists.map(band => (
+                                        <span className="text-sm">{band.name}</span>
+                                    ))}
+                                </div>
+                            ))} */}
+                            {profile.body.display_name}
                         </div>
-                    ) : (
-                        <h2>Error</h2>
-                    )
-                }
+                    </div>
+                ) : (
+                    <p>aa</p>
+                )}
             </div>
         </div>
     )
