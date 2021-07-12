@@ -14,6 +14,7 @@ const Dashboard = ({ token }) => {
     const newReleasesTrack = useSelector(state => state.newReleasesTrack)
     const recommendationsTrack = useSelector(state => state.recommendationsTrack)
     const { tracks } = recentlyTrack
+    const { newReleases } = newReleasesTrack
     const accessToken = useAuth(token)
     const dispatch = useDispatch();
     const s = new spotifyApi({
@@ -34,7 +35,7 @@ const Dashboard = ({ token }) => {
     return (
 
         <div className="min-h-screen py-10 flex flex-col justify-center items-center">
-            {tracks && (
+            {(tracks, newReleases) && (
                 <div>
                     <Title title="Recently Played" />
                     <div className="flex flex-wrap justify-center items-center container mx-auto">
@@ -47,6 +48,22 @@ const Dashboard = ({ token }) => {
                                     <div className="p-5 flex flex-col">
                                         <span className="text-lg font-semibold">{item.track.name}</span>
                                         <span className="text-sm">{item.track.artists[0].name}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <Title title="New Releases" />
+                    <div className="flex flex-wrap justify-center items-center container mx-auto">
+                        {newReleases.albums.items.map((item, i) => (
+                            <div className="mt-5 p-5" key={i}>
+                                <div key={i} className="h-full rounded-lg overflow-hidden bg-thirdColor shadow-lg mr-5 cursor-pointer">
+                                    <div className="bg-gray-400 p-5">
+                                        <img src={item.images[1].url} alt="" width="150" height="100" />
+                                    </div>
+                                    <div className="p-5 flex flex-col">
+                                        <span className="text-lg font-semibold">{item.name}</span>
+                                        <span className="text-sm">{item.artists[0].name}</span>
                                     </div>
                                 </div>
                             </div>

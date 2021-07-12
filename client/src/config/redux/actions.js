@@ -32,7 +32,7 @@ export const getRecommendations = (s) => async (dispatch) => {
     s.getRecommendations({
         min_energy: 0.4,
         seed_artists: ['6mfK6Q2tzLMEchAr0e9Uzu', '4DYFVNKZ1uixa6SQTvzQwJ'],
-        min_popularity: 50
+        min_popularity: 5
     })
     .then(res => dispatch({ type: RECOMMENDATIONS, payload: res.body }))
     .catch(err => console.log(err))
