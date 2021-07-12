@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 
@@ -8,7 +8,7 @@ const App = () => {
   const code = new URLSearchParams(window.location.search).get("code")
   
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <Fragment>
       {
         code ? (
           <Dashboard token={code} />
@@ -16,7 +16,7 @@ const App = () => {
           <Login />
         )
       }
-    </div>
+    </Fragment>
   )
 }
 
