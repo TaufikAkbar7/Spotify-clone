@@ -1,6 +1,13 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { recentlyTrackReducer, profileReducer, featuresTrackReducer, newReleasesReducer, recommendationsReducer } from "./reducers"
+import { 
+    recentlyTrackReducer, 
+    profileReducer, 
+    featuresTrackReducer, 
+    newReleasesReducer, 
+    recommendationsReducer, 
+    userPlaylistReducer 
+} from "./reducers"
 
 const reducer = combineReducers({
     myProfile: profileReducer,
@@ -8,6 +15,7 @@ const reducer = combineReducers({
     featuresTrack: featuresTrackReducer,
     newReleasesTrack: newReleasesReducer,
     recommendationsTrack: recommendationsReducer,
+    userPlaylist: userPlaylistReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

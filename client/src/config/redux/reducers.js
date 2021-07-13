@@ -1,4 +1,4 @@
-import { FEATURES_FOR_TRACK, NEW_RELEASES, PROFILE_USER, PROFILE_USER_REQUEST, RECENTLY_TRACK, RECOMMENDATIONS } from "./constats"
+import { FEATURES_FOR_TRACK, NEW_RELEASES, PROFILE_USER, PROFILE_USER_REQUEST, RECENTLY_TRACK, RECOMMENDATIONS, USER_PLAYLIST } from "./constats"
 
 export const recentlyTrackReducer = (state = {}, action) => {
     switch (action.type){
@@ -45,4 +45,13 @@ export const recommendationsReducer = (state = {}, action) => {
         default:
             return state;
     }
+}
+
+export const userPlaylistReducer = (state = {}, action) => {
+    switch (action.type){
+        case USER_PLAYLIST:
+            return { playlist: action.payload }
+        default:
+            return state;
+        }
 }

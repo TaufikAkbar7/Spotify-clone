@@ -3,7 +3,7 @@ import useAuth from '../utils/useAuth'
 import spotifyApi from "spotify-web-api-node"
 import { Card, Title, Sidebar } from "../components"
 import { useSelector, useDispatch } from "react-redux";
-import { getNewReleases, getRecentlyTrack } from "../config/redux/actions"
+import { getNewReleases, getRecentlyTrack, getUserPlaylist } from "../config/redux/actions"
 import "./style.css"
 
 
@@ -12,6 +12,7 @@ const Dashboard = ({ token }) => {
     // const { profile, loading } = myProfile
     const recentlyTrack = useSelector(state => state.recentlyTrack)
     const newReleasesTrack = useSelector(state => state.newReleasesTrack)
+    const userPlaylist = useSelector(state => state.userPlaylist)
     const { tracks } = recentlyTrack
     const { newReleases } = newReleasesTrack
     const accessToken = useAuth(token)
@@ -31,13 +32,14 @@ const Dashboard = ({ token }) => {
         
         dispatch(getRecentlyTrack(s))
         dispatch(getNewReleases(s))
-        
+        dispatch(getUserPlaylist(s))
     }, [accessToken, dispatch])
 
+    console.log(userPlaylist)
     return (
 
         <div className="min-h-screen py-10 flex flex-row justify-center items-start">
-            <Sidebar/>
+            {userPlaylist && <Sidebar content={userPlaylist}/>}
             {newReleases && (
                 <div>
                     <Title title="Recently Played" />

@@ -1,4 +1,4 @@
-import { PROFILE_USER, PROFILE_USER_REQUEST, RECENTLY_TRACK, FEATURES_FOR_TRACK, NEW_RELEASES, RECOMMENDATIONS } from "./constats"
+import { PROFILE_USER, PROFILE_USER_REQUEST, RECENTLY_TRACK, FEATURES_FOR_TRACK, NEW_RELEASES, RECOMMENDATIONS, USER_PLAYLIST } from "./constats"
 
 export const getRecentlyTrack = (s) => async (dispatch) => {
     s.getMyRecentlyPlayedTracks({ limit: 5 })
@@ -35,5 +35,11 @@ export const getRecommendations = (s) => async (dispatch) => {
         min_popularity: 5
     })
     .then(res => dispatch({ type: RECOMMENDATIONS, payload: res.body }))
+    .catch(err => console.log(err))
+}
+
+export const getUserPlaylist = (s) => async (dispatch) => {
+    s.getUserPlaylists()
+    .then(res => dispatch({ type: USER_PLAYLIST, payload: res.body.items }))
     .catch(err => console.log(err))
 }
