@@ -1,7 +1,23 @@
-import { FEATURES_FOR_TRACK, NEW_RELEASES, PROFILE_USER, PROFILE_USER_REQUEST, RECENTLY_TRACK, RECOMMENDATIONS, USER_PLAYLIST } from "./constats"
+import 
+{ 
+    FEATURES_FOR_TRACK, 
+    FEATURES_FOR_TRACK_REQUEST,
+    NEW_RELEASES,
+    NEW_RELEASES_REQUEST, 
+    PROFILE_USER, 
+    PROFILE_USER_REQUEST, 
+    RECENTLY_TRACK,
+    RECENTLY_TRACK_REQUEST, 
+    RECOMMENDATIONS,
+    RECOMMENDATIONS_REQUEST, 
+    USER_PLAYLIST,
+    USER_PLAYLIST_REQUEST, 
+} from "./constats"
 
-export const recentlyTrackReducer = (state = {}, action) => {
+export const recentlyTrackReducer = (state = { loading: false }, action) => {
     switch (action.type){
+        case RECENTLY_TRACK_REQUEST:
+            return { loading: true }
         case RECENTLY_TRACK:
             return { tracks: action.payload }
         default:
@@ -20,8 +36,10 @@ export const profileReducer = (state = { loading: false }, action) => {
     }
 }
 
-export const featuresTrackReducer = (state = {}, action) => {
+export const featuresTrackReducer = (state = { loading: false }, action) => {
     switch (action.type){
+        case FEATURES_FOR_TRACK_REQUEST:
+            return { loading: true }
         case FEATURES_FOR_TRACK:
             return { features: action.payload }
         default:
@@ -29,8 +47,10 @@ export const featuresTrackReducer = (state = {}, action) => {
     }
 }
 
-export const newReleasesReducer = (state = {}, action) => {
+export const newReleasesReducer = (state = { loading: false }, action) => {
     switch (action.type){
+        case NEW_RELEASES_REQUEST:
+            return { loading: true }
         case NEW_RELEASES:
             return { newReleases: action.payload }
         default:
@@ -38,8 +58,10 @@ export const newReleasesReducer = (state = {}, action) => {
     }
 }
 
-export const recommendationsReducer = (state = {}, action) => {
+export const recommendationsReducer = (state = { loading: false }, action) => {
     switch (action.type){
+        case RECOMMENDATIONS_REQUEST:
+            return { loading: true }
         case RECOMMENDATIONS:
             return { recommendations: action.payload }
         default:
@@ -47,8 +69,10 @@ export const recommendationsReducer = (state = {}, action) => {
     }
 }
 
-export const userPlaylistReducer = (state = {}, action) => {
+export const userPlaylistReducer = (state = { loading: false }, action) => {
     switch (action.type){
+        case USER_PLAYLIST_REQUEST:
+            return { loading: true }
         case USER_PLAYLIST:
             return { playlist: action.payload }
         default:

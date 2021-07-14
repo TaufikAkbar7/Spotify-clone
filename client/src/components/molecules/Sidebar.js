@@ -7,8 +7,8 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic"
 const Sidebar = ({ content: { playlist } }) => {
     console.log(playlist)
     return (
-        <div className="flex flex-col p-5 w-80 min-h-screen bg-primaryColor text-white">
-            <img src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="" className="h-48 object-contain mr-auto p-2" />
+        <div className="flex flex-col px-5 w-80 min-h-screen bg-primaryColor text-white">
+            <img src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="" className="object-contain mr-auto" />
             <SidebarOption Icon={HomeIcon} name="Home" />
             <SidebarOption Icon={SearchIcon} name="Search" />
             <SidebarOption Icon={LibraryMusicIcon} name="Your Library" />
