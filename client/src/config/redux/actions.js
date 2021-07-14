@@ -1,17 +1,20 @@
-import 
-{ 
-    PROFILE_USER, 
-    PROFILE_USER_REQUEST, 
-    RECENTLY_TRACK, 
-    FEATURES_FOR_TRACK, 
-    NEW_RELEASES,
-    NEW_RELEASES_REQUEST, 
-    RECOMMENDATIONS,
-    RECOMMENDATIONS_REQUEST ,
-    USER_PLAYLIST,
-    USER_PLAYLIST_REQUEST, 
-    RECENTLY_TRACK_REQUEST, 
-    FEATURES_FOR_TRACK_REQUEST 
+import {
+PROFILE_USER,
+PROFILE_USER_REQUEST,
+RECENTLY_TRACK,
+FEATURES_FOR_TRACK,
+NEW_RELEASES,
+NEW_RELEASES_REQUEST,
+RECOMMENDATIONS,
+RECOMMENDATIONS_REQUEST,
+USER_PLAYLIST,
+USER_PLAYLIST_REQUEST,
+RECENTLY_TRACK_REQUEST,
+FEATURES_FOR_TRACK_REQUEST,
+CATEGORIES_REQUEST,
+CATEGORIES,
+SEARCH_TRACKS_REQUEST,
+SEARCH_TRACKS
 } from "./constats"
 
 export const getRecentlyTrack = (s) => async (dispatch) => {
@@ -60,5 +63,24 @@ export const getUserPlaylist = (s) => async (dispatch) => {
     dispatch({ type: USER_PLAYLIST_REQUEST })
     s.getUserPlaylists()
         .then(res => dispatch({ type: USER_PLAYLIST, payload: res.body.items }))
+        .catch(err => console.log(err))
+}
+
+export const getCategories = (s) => async (dispatch) => {
+    dispatch({ type: CATEGORIES_REQUEST })
+    s.getCategories({
+        limit: 10,
+        offset: 0,
+        country: "SE",
+        locale: "sv_SE"
+    })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+}
+
+export const getSearchTracks = (s, keyword) => async (dispatch) => {
+    dispatch({ type: SEARCH_TRACKS_REQUEST })
+    s.searchTracks(keyword)
+        .then(res => console.log(res))
         .catch(err => console.log(err))
 }

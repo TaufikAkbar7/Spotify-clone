@@ -1,5 +1,7 @@
 import 
 { 
+    CATEGORIES,
+    CATEGORIES_REQUEST,
     FEATURES_FOR_TRACK, 
     FEATURES_FOR_TRACK_REQUEST,
     NEW_RELEASES,
@@ -10,6 +12,8 @@ import
     RECENTLY_TRACK_REQUEST, 
     RECOMMENDATIONS,
     RECOMMENDATIONS_REQUEST, 
+    SEARCH_TRACKS, 
+    SEARCH_TRACKS_REQUEST, 
     USER_PLAYLIST,
     USER_PLAYLIST_REQUEST, 
 } from "./constats"
@@ -75,6 +79,28 @@ export const userPlaylistReducer = (state = { loading: false }, action) => {
             return { loading: true }
         case USER_PLAYLIST:
             return { playlist: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const categoriesReducer = (state = { loading: false }, action) => {
+    switch (action.type){
+        case CATEGORIES_REQUEST:
+            return { loading: true }
+        case CATEGORIES:
+            return { categories: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const searchTracksReducer = (state = { loading: false }, action) => {
+    switch (action.type){
+        case SEARCH_TRACKS_REQUEST:
+            return { loading: true }
+        case SEARCH_TRACKS:
+            return { searchTracks: action.payload }
         default:
             return state;
         }

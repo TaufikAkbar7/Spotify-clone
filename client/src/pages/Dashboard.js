@@ -3,7 +3,7 @@ import useAuth from '../utils/useAuth'
 import spotifyApi from "spotify-web-api-node"
 import { Card, Title, Sidebar, Spinner } from "../components"
 import { useSelector, useDispatch } from "react-redux";
-import { getNewReleases, getRecentlyTrack, getUserPlaylist, getProfile } from "../config/redux/actions"
+import { getNewReleases, getRecentlyTrack, getUserPlaylist, getProfile, getCategories, getSearchTracks } from "../config/redux/actions"
 import "./style.css"
 
 
@@ -34,8 +34,6 @@ const Dashboard = ({ token }) => {
         dispatch(getNewReleases(s))
         dispatch(getUserPlaylist(s))
     }, [accessToken, dispatch])
-
-    console.log(userPlaylist)
     return (
         <div className="min-h-screen py-10 flex justify-center items-start">
             {loading ? (
