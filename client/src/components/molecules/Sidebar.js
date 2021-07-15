@@ -12,7 +12,7 @@ const Sidebar = ({ content: { playlist } }) => {
             <img src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="" className="object-contain mr-auto" />
             <SidebarOption Icon={HomeIcon} name="Home" link="/dashboard"/>
             <SidebarOption Icon={SearchIcon} name="Search" link="/search"/>
-            <SidebarOption Icon={LibraryMusicIcon} name="Your Library" />
+            <SidebarOption Icon={LibraryMusicIcon} name="Your Library" link="/library" />
             <br />
             <strong className="ml-2 p-2 text-sm">PLAYLISTS</strong>
             {playlist && (

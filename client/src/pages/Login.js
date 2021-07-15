@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
-const Login = () => {
+export const code = new URLSearchParams(window.location.search).get("code")
 
+export const Login = () => {
+    
     const scopes = [
         "user-read-email",
         "user-read-private",
@@ -14,10 +17,16 @@ const Login = () => {
     const redirectUrl = "http://localhost:3000"
     const authEndPoint = "https://accounts.spotify.com/authorize"
     const client_id = "6c7d7ffb3ab74ab7a9bf265960469268"
-
-
-
     const loginUrl = `${authEndPoint}?client_id=${client_id}&redirect_uri=${redirectUrl}&scope=${scopes.join("%20")}&response_type=code&show_dialog=true`
+    const history = useHistory();
+
+    useEffect(() => {
+        if(!code){
+            window.location.href = loginUrl
+        }else{
+            history.push("/dashboard")
+        }
+    }, [history])
 
     return (
         <div className="min-h-screen flex flex-col justify-center items-center container mx-auto">
@@ -31,5 +40,3 @@ const Login = () => {
         </div>
     )
 }
-
-export default Login

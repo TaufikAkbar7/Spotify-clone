@@ -1,13 +1,18 @@
 import React, { useEffect, Fragment } from 'react'
+import { Card, Title, Sidebar, Spinner } from "../components"
+import { useSelector, useDispatch } from "react-redux"
+import { code } from "./Login"
+import { getNewReleases, getRecentlyTrack, getUserPlaylist, getProfile } from "../config/redux/actions"
 import useAuth from '../utils/useAuth'
 import spotifyApi from "spotify-web-api-node"
-import { Card, Title, Sidebar, Spinner } from "../components"
-import { useSelector, useDispatch } from "react-redux";
-import { getNewReleases, getRecentlyTrack, getUserPlaylist, getProfile, getCategories, getSearchTracks } from "../config/redux/actions"
 import "./style.css"
 
 
-const Dashboard = ({ token }) => {
+const Dashboard = () => {
+    const accessToken = useAuth(code)
+    const s = new spotifyApi({
+        clientId: "6c7d7ffb3ab74ab7a9bf265960469268"
+    })
     const myProfile = useSelector(state => state.myProfile)
     const { profile, loading } = myProfile
     const recentlyTrack = useSelector(state => state.recentlyTrack)
@@ -15,25 +20,21 @@ const Dashboard = ({ token }) => {
     const userPlaylist = useSelector(state => state.userPlaylist)
     const { tracks, loading: loadingRecently } = recentlyTrack
     const { newReleases, loading: loadingNewReleases } = newReleasesTrack
-    const accessToken = useAuth(token)
     const dispatch = useDispatch();
-    const s = new spotifyApi({
-        clientId: "6c7d7ffb3ab74ab7a9bf265960469268"
-    })
-
     const sliceName = (name) => {
         const data = name.slice(0, 16)
         return data
     }
 
     useEffect(() => {
-        if (!accessToken) return console.log("cannot get access token")
         s.setAccessToken(accessToken)
         dispatch(getProfile(s))
         dispatch(getRecentlyTrack(s))
         dispatch(getNewReleases(s))
         dispatch(getUserPlaylist(s))
-    }, [accessToken, dispatch])
+    }, [dispatch, accessToken])
+
+
     return (
         <div className="min-h-screen py-10 flex justify-center items-start">
             {loading ? (
