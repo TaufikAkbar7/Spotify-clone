@@ -26,13 +26,13 @@ const Search = () => {
 
    
     return (
-        <div className="min-h-screen py-10 flex justify-center items-start">
+        <div className="min-h-screen py-10 flex justify-start items-start">
             {loading ? (
                 <Spinner />
             ) : categories && newReleases ? (
                 <div className="flex justify-center items-start">
                     <Sidebar content={userPlaylist} />
-                    <div className="flex flex-col justify-center items-start">
+                    <div className="flex flex-col justify-center items-start ml-5">
                         <InputSearch/>
                         <Title title="Recently Played" />
                         <div className="flex flex-wrap justify-center items-center container mx-auto">
