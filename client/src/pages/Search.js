@@ -24,7 +24,7 @@ const Search = () => {
         dispatch(getUserPlaylist(s))
     }, [dispatch, accessToken])
 
-   
+
     return (
         <div className="min-h-screen py-10 flex justify-start items-start">
             {loading ? (
@@ -33,17 +33,31 @@ const Search = () => {
                 <div className="flex justify-center items-start">
                     <Sidebar content={userPlaylist} />
                     <div className="flex flex-col justify-center items-start ml-5">
-                        <InputSearch/>
-                        <Title title="Recently Played" />
-                        <div className="flex flex-wrap justify-center items-center container mx-auto">
-                        {newReleases.albums.items.map(item => (
-                            <Card
-                            key={item.id}
-                            img={item.images[1].url}
-                            song={sliceName(item.name)}
-                            band={sliceName(item.artists[0].name)}
-                        />
-                        ))}
+                        <InputSearch />
+                        <div>
+                            <Title title="New releases"/>
+                            <div className="flex flex-wrap justify-center items-center container mx-auto">
+                                {newReleases.albums.items.map(item => (
+                                    <Card
+                                    key={item.id}
+                                    img={item.images[1].url}
+                                    song={sliceName(item.name)}
+                                    band={sliceName(item.artists[0].name)}
+                                    />
+                                ))}
+                            </div>
+                            <div className="mt-5">
+                            <Title title="Your top genre" />
+                            <div className="flex flex-wrap justify-center items-center container mx-auto">
+                                {categories.map(item => (
+                                    <Card
+                                        key={item.id}
+                                        img={item.icons[0].url}
+                                        song={sliceName(item.name)}
+                                    />
+                                ))}
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
