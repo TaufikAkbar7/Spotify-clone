@@ -24,7 +24,8 @@ export const Login = () => {
         if(!code){
             window.location.href = loginUrl
         }else{
-            history.push("/dashboard")
+            // history.push("/dashboard")
+            history.push("/search")
         }
     }, [history])
 

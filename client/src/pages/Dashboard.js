@@ -3,7 +3,7 @@ import { Card, Title, Sidebar, Spinner } from "../components"
 import { useSelector, useDispatch } from "react-redux"
 import { code } from "./Login"
 import { getNewReleases, getRecentlyTrack, getUserPlaylist, getProfile } from "../config/redux/actions"
-import useAuth from '../utils/useAuth'
+import { useAuth, sliceName } from '../utils'
 import spotifyApi from "spotify-web-api-node"
 import "./style.css"
 
@@ -21,10 +21,6 @@ const Dashboard = () => {
     const { tracks, loading: loadingRecently } = recentlyTrack
     const { newReleases, loading: loadingNewReleases } = newReleasesTrack
     const dispatch = useDispatch();
-    const sliceName = (name) => {
-        const data = name.slice(0, 16)
-        return data
-    }
 
     useEffect(() => {
         s.setAccessToken(accessToken)

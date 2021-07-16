@@ -4,8 +4,8 @@ const Card = ({ key, img, band, song }) => {
    
     return (
         <div>
-            <div className="mt-5 p-5" key={key}>
-                <div className="h-full rounded-lg overflow-hidden bg-thirdColor shadow-lg mr-5 cursor-pointer">
+            <div className="mt-5 mr-2" key={key}>
+                <div className="h-full rounded-lg overflow-hidden bg-thirdColor shadow-lg cursor-pointer">
                     <div className="bg-gray-400 p-5">
                         <img src={img} alt="" width="150" height="100" />
                     </div>

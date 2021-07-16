@@ -74,7 +74,7 @@ export const getCategories = (s) => async (dispatch) => {
         country: "SE",
         locale: "sv_SE"
     })
-        .then(res => console.log(res))
+        .then(res => dispatch({ type: CATEGORIES, payload: res.body.categories.items }))
         .catch(err => console.log(err))
 }
 
