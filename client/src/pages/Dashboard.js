@@ -38,7 +38,7 @@ const Dashboard = () => {
             ) : profile ? (
                 <div className="flex justify-center items-start">
                     <Sidebar content={userPlaylist} />
-                    <div className="flex flex-col justify-center items-start">
+                    <div className="flex flex-col justify-center items-start bg-red-500">
                         <Title title="Recently Played" />
                         <div className="flex flex-wrap justify-center items-center container mx-auto">
                             {loadingRecently ? (

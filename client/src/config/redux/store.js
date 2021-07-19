@@ -8,7 +8,9 @@ import {
     recommendationsReducer, 
     userPlaylistReducer, 
     categoriesReducer,
-    searchTracksReducer
+    searchTracksReducer,
+    savedTracksReducer,
+    playlistByIdReducer
 } from "./reducers"
 
 const reducer = combineReducers({
@@ -20,6 +22,8 @@ const reducer = combineReducers({
     userPlaylist: userPlaylistReducer,
     listCategories: categoriesReducer,
     listSearchTracks: searchTracksReducer,
+    listSavedTracks: savedTracksReducer,
+    playlistById: playlistByIdReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

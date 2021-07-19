@@ -4,6 +4,8 @@ import
     CATEGORIES_REQUEST,
     FEATURES_FOR_TRACK, 
     FEATURES_FOR_TRACK_REQUEST,
+    GET_PLAYLIST,
+    GET_PLAYLIST_REQUEST,
     NEW_RELEASES,
     NEW_RELEASES_REQUEST, 
     PROFILE_USER, 
@@ -12,6 +14,8 @@ import
     RECENTLY_TRACK_REQUEST, 
     RECOMMENDATIONS,
     RECOMMENDATIONS_REQUEST, 
+    SAVED_TRACKS, 
+    SAVED_TRACKS_REQUEST, 
     SEARCH_TRACKS, 
     SEARCH_TRACKS_REQUEST, 
     USER_PLAYLIST,
@@ -101,6 +105,28 @@ export const searchTracksReducer = (state = { loading: false }, action) => {
             return { loading: true }
         case SEARCH_TRACKS:
             return { searchTracks: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const savedTracksReducer = (state = { loading: false }, action) => {
+    switch (action.type){
+        case SAVED_TRACKS_REQUEST:
+            return { loading: true }
+        case SAVED_TRACKS:
+            return { savedTracks: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const playlistByIdReducer = (state = { loading: false }, action) => {
+    switch (action.type){
+        case GET_PLAYLIST_REQUEST:
+            return { loading: true }
+        case GET_PLAYLIST:
+            return { playlist: action.payload }
         default:
             return state;
         }

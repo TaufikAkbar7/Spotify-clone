@@ -1,20 +1,24 @@
 import {
-PROFILE_USER,
-PROFILE_USER_REQUEST,
-RECENTLY_TRACK,
-FEATURES_FOR_TRACK,
-NEW_RELEASES,
-NEW_RELEASES_REQUEST,
-RECOMMENDATIONS,
-RECOMMENDATIONS_REQUEST,
-USER_PLAYLIST,
-USER_PLAYLIST_REQUEST,
-RECENTLY_TRACK_REQUEST,
-FEATURES_FOR_TRACK_REQUEST,
-CATEGORIES_REQUEST,
-CATEGORIES,
-SEARCH_TRACKS_REQUEST,
-SEARCH_TRACKS
+    PROFILE_USER,
+    PROFILE_USER_REQUEST,
+    RECENTLY_TRACK,
+    FEATURES_FOR_TRACK,
+    NEW_RELEASES,
+    NEW_RELEASES_REQUEST,
+    RECOMMENDATIONS,
+    RECOMMENDATIONS_REQUEST,
+    USER_PLAYLIST,
+    USER_PLAYLIST_REQUEST,
+    RECENTLY_TRACK_REQUEST,
+    FEATURES_FOR_TRACK_REQUEST,
+    CATEGORIES_REQUEST,
+    CATEGORIES,
+    SEARCH_TRACKS_REQUEST,
+    // SEARCH_TRACKS
+    SAVED_TRACKS_REQUEST,
+    SAVED_TRACKS,
+    GET_PLAYLIST_REQUEST,
+    GET_PLAYLIST
 } from "./constats"
 
 export const getRecentlyTrack = (s) => async (dispatch) => {
@@ -82,5 +86,22 @@ export const getSearchTracks = (s, keyword) => async (dispatch) => {
     dispatch({ type: SEARCH_TRACKS_REQUEST })
     s.searchTracks(keyword)
         .then(res => console.log(res))
+        .catch(err => console.log(err))
+}
+
+export const getSavedTracks = (s) => async (dispatch) => {
+    dispatch({ type: SAVED_TRACKS_REQUEST })
+    s.getMySavedTrack({
+        limit: 8,
+        offset: 1
+    })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+}
+
+export const getPlaylistById = (s, id) => async (dispatch) => {
+    dispatch({ type: GET_PLAYLIST_REQUEST })
+    s.getPlaylist(id)
+        .then(res => dispatch({ type: GET_PLAYLIST, payload: res.body }))
         .catch(err => console.log(err))
 }

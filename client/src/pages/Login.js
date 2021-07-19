@@ -12,7 +12,10 @@ export const Login = () => {
         "user-library-modify",
         "user-read-playback-state",
         "user-modify-playback-state",
-        "user-read-recently-played"
+        "user-read-recently-played",
+        "playlist-modify-public",
+        "playlist-modify-private",
+        "playlist-read-private",
     ]
     const redirectUrl = "http://localhost:3000"
     const authEndPoint = "https://accounts.spotify.com/authorize"
@@ -25,7 +28,7 @@ export const Login = () => {
             window.location.href = loginUrl
         }else{
             // history.push("/dashboard")
-            history.push("/search")
+            history.push("/library")
         }
     }, [history])
 
