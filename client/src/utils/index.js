@@ -1,4 +1,4 @@
-import sliceName from "./func"
+import { sliceName, convertToMinute } from "./func"
 import useAuth from "./useAuth"
 
-export { sliceName, useAuth }
+export { sliceName, useAuth, convertToMinute }

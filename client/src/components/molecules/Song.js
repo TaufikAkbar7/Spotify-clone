@@ -1,6 +1,6 @@
 import React from 'react'
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
-
+import { convertToMinute } from "../../utils"
 const Song = ({ song, artist, duration }) => {
     return (
         <div className="flex flex-row justify-between justify-items-stretch w-full p-5">
@@ -11,7 +11,7 @@ const Song = ({ song, artist, duration }) => {
                     <span className="text-xs text-gray-400">{artist}</span>
                 </div>
             </div>
-            <span className="text-xs ml-96 text-gray-400">{duration}</span>
+            <span className="text-xs ml-96 text-gray-400">{convertToMinute(duration)}</span>
         </div>
     )
 }
