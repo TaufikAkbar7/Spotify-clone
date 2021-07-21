@@ -16,8 +16,9 @@ module.exports = {
       green: colors.green,
       blue: colors.blue,
       primaryColor: "#040404",
-      secondaryColor: "#fff",
-      thirdColor: colors.gray[400]
+      secondaryColor: "#b3b3b3",
+      wrapColor: "#121212",
+      bgCardColor: "#282828",   
     }
   },
   variants: {
