@@ -18,7 +18,7 @@ module.exports = {
       primaryColor: "#040404",
       secondaryColor: "#b3b3b3",
       wrapColor: "#121212",
-      bgCardColor: "#282828",   
+      cardColor: "#282828",   
     }
   },
   variants: {

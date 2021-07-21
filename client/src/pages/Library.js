@@ -29,11 +29,11 @@ const Library = () => {
             {loading ? (
                 <Spinner />
             ) : playlist ? (
-                <div className="flex justify-center items-start">
+                <div className="flex justify-center items-start bg-wrapColor">
                     <Sidebar content={userPlaylist} />
                     <div className="container mx-auto flex flex-row items-start ml-5 p-10">
                         <div className="flex flex-col justify-center items-center">
-                            <img src={playlist.images[0].url} width="300" height="150" />
+                            <img src={playlist.images[0].url} width="300" height="150" alt="playlist-img"/>
                             <span className="text-2xl text-white font-semibold mt-5">{playlist.name}</span>
                             <button className="mt-5 rounded-full bg-green-500 text-white p-2 px-14">Play</button>
                             <span className="text-sm mt-5 text-gray-400">{playlist.tracks.total} SONGS</span>
@@ -45,6 +45,7 @@ const Library = () => {
                                     song={item.track.name}
                                     artist={item.track.artists[0].name}
                                     duration={item.track.duration_ms}
+                                    album={item.track.album.name}
                                 />
                             ))}
                         </div>
